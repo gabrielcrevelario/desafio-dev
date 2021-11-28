@@ -1,0 +1,90 @@
+.DetailFile {
+    width: 600px;
+    height: 500px;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    position: relative;
+    .header {
+        .title {
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 0 20px;
+            flex-direction: column;
+            border-bottom: solid 2px #efefef;
+            width: 93%;
+            h3 {
+                padding:  5px 0px;
+            }
+        }
+        button {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            border: none;
+            background: #0b82fd;
+            color: white;
+            position: absolute;
+            left: 95%;
+            top: 1%;
+            transform: translate( -17%, -51%);
+
+        }
+    }
+    .body {
+
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    
+    
+        .customInformation {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: solid 2px #f1f1f1;
+            width: 85%;
+            .item {
+                height: 80px;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    width: 30%;
+                    align-items: center;
+                span:first-child {
+                    font-weight: 600;
+                    color: #4a4a4a;
+                }
+                span:last-child {
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
+        }
+        .backAndNextButton {
+            width: 92%;
+            position: absolute;
+            top: 41%;
+            display: flex;
+            justify-content: space-between;
+            button {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: solid 2px #c3c1c1;
+                box-shadow: 2px 1px 4px #878787;
+
+            }
+            button:first-child {
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}

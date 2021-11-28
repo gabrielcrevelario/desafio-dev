@@ -1,0 +1,66 @@
+.containerListScores {
+  width: 77.5%;
+  display: flex;
+  justify-content: center;
+  background: white;
+  border: solid #e1e1e1 2px;
+  box-shadow: 1px 4px 4px #9b9999;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 23px;
+  margin: 40px 0;
+  .listStores {
+    
+    width: 97%;
+    overflow-y: scroll;
+    background: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 0;
+    border: solid 2px darkgrey;
+    box-shadow: inset -7px 2px 4px #e5e5e5;
+    
+    .container {
+      position: relative;
+      width: 35%;
+      background: white;
+      box-shadow: 3px 3px 3px #bfbfbf;
+      display: flex;
+      margin: 10px 0;
+      align-items: center;
+      border: solid 2px #cbcbcb;
+      .item {
+        width: 30%;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          font-size: 60px;
+        }
+      }
+      .item:first-child {
+        border-right: solid 2px #e4e4e4;
+        height: 70px;
+        
+      }
+      .item:nth-child(2) {
+        width: 45%;
+        flex-direction: column;
+        h4,p,span {
+          height: 25px;
+        }
+      }
+      .containerDate {
+        position: absolute;
+        position: absolute;
+        left: 78%;
+        top: 12%;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}
