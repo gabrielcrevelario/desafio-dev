@@ -1,0 +1,23 @@
+version: '3'
+########### BACKEND ###################################
+services:
+  server:
+    build: ./back
+    expose:
+      - ${APP_SERVER_PORT}
+    environment:
+      - APP_SERVER_PORT: ${APP_SERVER_PORT}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    command: npm run dev
+########### FRONTEND ###################################
+    client:
+      build: ./front/desafio-dev  
+      environment:
+        - REACT_APP_CNAB=${REACT_APP_CNAB}
+        - REACT_APP_PORT=${REACT_APP_PORT}
+      expose:
+        - ${REACT_APP_PORT}
+      ports:
+        - ${REACT_APP_PORT}=${REACT_APP_PORT}
+      command: npm start  
