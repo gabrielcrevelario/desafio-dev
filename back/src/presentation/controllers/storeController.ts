@@ -1,34 +1,16 @@
-import { Store } from '@/domain/entity/Store'
+import { Store } from '@/domain/entities/Store'
+import storeService from '@/aplication/services/storeService'
 
-const getAll = async (request, reply): Promise<Store[]> => {
-  const stores: Store[] = [
-    {
-      id: 0,
-      type: '',
-      dateStart: '',
-      value: 0,
-      cpf: '',
-      card: '',
-      hour: '',
-      storeOwner: '',
-      nameStore: ''
-    }]
-  return stores
+class StoreController {
+  getAll = async (): Promise<Store[]> => {
+    console.log('caiu')
+    return storeService.getAll()
+  }
+
+  create = async (request: { body: Store[] }, reply): Promise<Store[]> => {
+    console.log(JSON.stringify(request.body))
+    return storeService.createAll(request.body)
+  }
 }
 
-const getById = async (request, reply) => {
-
-}
-
-const createStores = async (request, reply) => {
-    
-}
-
-const remove = async (request, reply) => {
-    
-}
-
-const update =  async (request, reply) => {
-    
-} 
-export { getAll, getById, createStores, remove, update }
+export default new StoreController()

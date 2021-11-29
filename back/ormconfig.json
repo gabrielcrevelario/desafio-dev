@@ -7,17 +7,17 @@
    "database": "cnabDB",
    "logging": true,
    "entities": [
-      "src/domain/entity/*.ts"
+      "src/domain/entities/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/infrastructure/migrations/*.ts"
    ],
    "subscribers": [
       "src/subscriber/**/*.ts"
    ],
    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/infrastructure/migration",
+      "entitiesDir": "src/domain/entities/",
+      "migrationsDir": "src/infrastructure/migrations",
       "subscribersDir": "src/subscriber"
    }
 }

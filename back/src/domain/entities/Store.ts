@@ -1,14 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
-@Entity()
+@Entity({ name: 'store' })
 export class Store {
   @PrimaryGeneratedColumn()
-  id: number
+  id?: number
 
   @Column()
   type: string
 
-  @Column()
+  @Column({ type: 'datetime' })
   dateStart: string
 
   @Column()
