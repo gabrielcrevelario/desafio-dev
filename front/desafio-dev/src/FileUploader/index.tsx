@@ -1,18 +1,21 @@
 import React, { useCallback, useState } from "react";
 import { CloudUpload, Visibility } from "@material-ui/icons";
-import { Modal } from "@material-ui/core";
+import { Button, Modal, Snackbar } from "@material-ui/core";
 import './FileUploader.scss'
 import ListFiles from "./ListFiles";
 import { useDropzone } from "react-dropzone";
 import DetailFile from "./DetailFile";
 import { File } from "./store"
+import axios from 'axios'
+import Fade from '@mui/material/Fade';
 const FileUploader = (props: any) => {
-    const [fileName, setFileName] = useState('');
-    const [preview, setPreview] = useState('');
+    const { getScore } = props
+    const [openMessage, setOpenMessage] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("Success insert");
     const [listFiles, setListFiles] = useState<File[]>([]);
     const [selectedFile, setSelectedFile] = useState<File>({
         type: '',
-        dateStart: '',
+        dateStart: new Date(),
         value: 0,
         cpf: '',
         card: '',
@@ -34,11 +37,14 @@ const FileUploader = (props: any) => {
         let listFilesText: string[] = payload.split(/\n/);
         listFilesText.splice(listFilesText.length - 1, 1)
         let listFiles = listFilesText.map((fileTxt: string, i: number) => {
-            
+            const year = parseInt(fileTxt.substring(1,5));
+            const month = parseInt(fileTxt.substring(5,8));
+            const day = parseInt(fileTxt.substring(8,10));
+            const date = new Date(year,month, day);
             let store: File = {
                 id: i,
                 type: fileTxt.substring(formatStore[0].start, formatStore[0].end),
-                dateStart: fileTxt.substring(formatStore[1].start, formatStore[1].end),
+                dateStart: date,
                 value: parseInt(fileTxt.substring(formatStore[2].start, formatStore[2].end)) / 100,
                 cpf: fileTxt.substring(formatStore[3].start, formatStore[3].end),
                 card: fileTxt.substring(formatStore[4].start, formatStore[4].end),
@@ -93,6 +99,25 @@ const FileUploader = (props: any) => {
         index = index <= 0 ? index : index - 1;
         setSelectedFile(newFiles[index])
     }
+    const sendStores = async () => {
+        debugger
+        try {
+
+            const REACT_APP_API_CNAB:string = process.env.REACT_APP_API_CNAB || '';
+            const newFiles = [...listFiles].map((file:any) => {
+                delete file.id;
+                return file;
+            });
+            const stores = await axios.post(`${REACT_APP_API_CNAB}/`, newFiles);
+            setOpenMessage(true);
+            getScore(true)
+        } catch (err:any) {
+            console.error(err);
+            setMessage(err.message);
+            setOpenMessage(true);
+        }
+    }
+
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
     return (<div className="uploadContainer">
        <div className="title">
@@ -129,6 +154,14 @@ const FileUploader = (props: any) => {
                 onNext={getFileNextById}
             />
         </Modal>
+        <div className="btnSend">
+            <Button onClick={sendStores} variant="contained">Enviar Lojas</Button>
+        </div>
+        <Snackbar
+            open={openMessage}
+            onClose={() => setOpenMessage(false)}
+            message={message}
+        />
     </div>)
 }
 export default FileUploader;

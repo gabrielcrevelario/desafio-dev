@@ -3,6 +3,7 @@ import './DatailFile.scss'
 import { TextField } from '@material-ui/core';
 import {Close, ArrowBack,NavigateNext} from '@material-ui/icons';
 const DetailFile = (props:any) => {
+    debugger
     const {file, onClose, onBack, onNext} = props;
     return (<div className="DetailFile">
                     <div className="header">
@@ -24,7 +25,7 @@ const DetailFile = (props:any) => {
                                 </div>
                                 <div className="item">
                                     <span>Data</span>
-                                    <span>{file.dataStart}</span>
+                                    <span>{file.dateStart.toLocaleDateString('pt-br')}</span>
                                 </div>
                             </div>
                             <div className="customInformation">
@@ -35,16 +36,6 @@ const DetailFile = (props:any) => {
                                 <div className="item">
                                     <span>CPF</span>
                                     <span>{file.cpf}</span>
-                                </div>
-                            </div>
-                            <div className="customInformation">
-                                <div className="item">
-                                    <span>Cartão</span>
-                                    <span>{file.card}</span>
-                                </div>
-                                <div className="item">
-                                    <span>Hora</span>
-                                    <span>{file.hour}</span>
                                 </div>
                             </div>
                             <div className="customInformation">

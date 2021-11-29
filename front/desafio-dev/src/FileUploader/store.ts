@@ -1,7 +1,7 @@
 export interface File {
     id?:number;
     type:string;
-    dateStart:string;
+    dateStart:Date;
     value:number;
     cpf:string;
     card:string;

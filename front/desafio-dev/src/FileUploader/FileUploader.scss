@@ -87,4 +87,19 @@
       
     }
   }
+
+  .btnSend {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+    background: #0787f5;
+    color: white;
+    font-weight: 600;
+
+    }
+
+  }
     }
